@@ -19,10 +19,13 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item ng-repeat="item in items" ng-class="{purchased: item.status == 'purchased'}">
+        <ion-item ng-repeat="item in items" ng-class="{'purchased' : item.status == 'purchased', 'clear': item.status == 'clear'}">
           {{item.name}}
           <ion-option-button class="button-royal" ng-click="purchaseItem(item)">
               <i class="icon ion-checkmark"></i>
+          </ion-option-button>
+          <ion-option-button class="button-calm" ng-click="unPurchaseItem(item)">
+            <i class="icon ion-ios-checkmark"></i>
           </ion-option-button>
         </ion-item>
       </ion-list>

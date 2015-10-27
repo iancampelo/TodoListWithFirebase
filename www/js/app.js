@@ -32,4 +32,10 @@ angular.module('starter', ['ionic', 'firebase'])
       itemRef.child('status').set('purchased');
       $ionicListDelegate.closeOptionButtons();
     };
+    $scope.unPurchaseItem = function(item){
+      var itemRef = new Firebase('https://todolistteste.firebaseio.com/items/'+
+        item.$id);
+      itemRef.child('status').set('clear');
+      $ionicListDelegate.closeOptionButtons();
+    };
   });
