@@ -19,3 +19,11 @@
   color: black;
   text-decoration: none;
 }
+.mdl-button--floating-action {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  padding-top: 24px;
+  margin-bottom: 0;
+  z-index: 998;
+}
