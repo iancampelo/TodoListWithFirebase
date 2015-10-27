@@ -11,14 +11,15 @@
   color:white;
 }
 
-.purchased{
+.completed{
   color: #9e9e9e;
   text-decoration: line-through;
 }
-.clear{
+.uncompleted{
   color: black;
   text-decoration: none;
 }
+
 .mdl-button--floating-action {
   position: fixed;
   right: 24px;

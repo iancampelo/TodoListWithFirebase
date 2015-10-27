@@ -18,21 +18,34 @@ angular.module('todo', ['ionic', 'firebase'])
         if(name) {
           $scope.items.$add({
             'name': name,
-            'status': 'clear'
+            'status': 'uncompleted'
           });
         }
       });
     };
-    $scope.purchaseItem = function(item){
-      var itemRef = new Firebase('https://todolistteste.firebaseio.com/items/'+
-      item.$id);
-      itemRef.child('status').set('purchased');
+    $scope.removeItem = function(item){
+      $ionicPopup.confirm({
+        title: 'Remove TODO Item',
+        cssClass: 'ionicModal',
+        template: 'Are you sure about this?'
+      }).then(function(res){
+        if(res) {
+          $scope.items.$remove(item);
+        }
+      });
+    };
+    $scope.completeItem = function(item){
+      var itemRef = new Firebase('https://todolistteste.firebaseio.com/items/'+ item.$id);
+      if(item.status == 'uncompleted')
+        itemRef.child('status').set('completed');
+      else
+        itemRef.child('status').set('uncompleted');
       $ionicListDelegate.closeOptionButtons();
     };
-    $scope.unPurchaseItem = function(item){
-      var itemRef = new Firebase('https://todolistteste.firebaseio.com/items/'+
-        item.$id);
-      itemRef.child('status').set('clear');
-      $ionicListDelegate.closeOptionButtons();
+    $scope.appliedClass = function(classe){
+      if(classe.status == 'uncompleted')
+        return "button-calm uncompleted";
+      else
+        return "button-dark completed";
     };
   });
